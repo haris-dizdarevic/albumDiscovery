@@ -31,17 +31,17 @@ class AlbumDetailsViewController: AppViewController<AlbumDetailsViewModel> {
             self?.artistNameLabel.text = album.artistName
         }.dispose(in: bag)
 
-        viewModel.databaseErrorMessage.observeNext { message in
+        viewModel.databaseErrorMessage.observeNext { [weak self] message in
             guard let message = message else { return }
-            self.showAlert(with: message)
+            self?.showAlert(with: message)
         }.dispose(in: bag)
 
-        saveButton.reactive.tap.observeNext {
-            self.viewModel.saveTapped()
+        saveButton.reactive.tap.observeNext { [weak self] in
+            self?.viewModel.saveTapped()
         }.dispose(in: bag)
 
-        deleteButton.reactive.tap.observeNext {
-            self.viewModel.deleteTapped()
+        deleteButton.reactive.tap.observeNext { [weak self] in
+            self?.viewModel.deleteTapped()
         }.dispose(in: bag)
 
         bindCollectionView()
