@@ -1,0 +1,1 @@
+class AlbumDAO: RealmDAO<DBAlbum> {}
